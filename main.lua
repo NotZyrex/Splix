@@ -1745,6 +1745,20 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         --
         local playerList = {window = window, page = page, visibleContent = {}, buttons = {}, currentAxis = 20, scrollingindex = 0, scrolling = {false, nil}, items = {}, players = {}}
         --
+        local pointer = info.pointer or ""
+        local dropdownData = info.dropdown or {
+            ["Local Player"] = Color3.fromRGB(200, 55, 200),
+            ["Priority"] = Color3.fromRGB(55, 55, 200),
+            ["Friend"] = Color3.fromRGB(55, 200, 55),
+            ["Enemy"] = Color3.fromRGB(200, 55, 55)
+        }
+        local dropdownOptions = {};
+
+        for i,v in pairs(dropdownData) do
+            table.insert(dropdownOptions, i);
+        end
+
+        local default = info.default or dropdownOptions[1]
         --
         local playerList_inline = utility:Create("Frame", {Vector2.new(5,5), window.tab_frame}, {
             Size = utility:Size(1, -10, 0, ((10 * 22) + 4) + 20 + 60 + 12, window.tab_frame),
@@ -1979,7 +1993,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                     listitem_status.Text = selected[3]
                     --
                     listitem_username.Color = selected[4] and theme.accent or theme.textcolor
-                    listitem_status.Color = selected[3] == "Local Player" and Color3.fromRGB(200, 55, 200) or selected[3] == "Priority" and Color3.fromRGB(55, 55, 200) or selected[3] == "Friend" and Color3.fromRGB(55, 200, 55) or selected[3] == "Enemy" and Color3.fromRGB(200, 55, 55) or theme.textcolor
+                    listitem_status.Color = dropdownData[selected[3]] or theme.textcolor
                     --
                     library.colors[listitem_username] = {
                         OutlineColor = "textborder",
@@ -2074,8 +2088,8 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         for Index = 1, 1 do
             local button = {
                 open = false,
-                current = "None",
-                options = {"None", "Friend", "Enemy", "Priority"},
+                current = default,
+                options = dropdownOptions,
                 holder = {buttons = {}, drawings = {}},
                 selection = nil
             }
