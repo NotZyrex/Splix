@@ -1756,10 +1756,12 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         for i,v in pairs(dropdownData) do
             if i > 1 then
                 table.insert(dropdownOptions, i);
+            else
+                table.insert(dropdownOptions, "None");
             end
         end
 
-        local default = info.default or dropdownOptions[1]
+        local default = info.default or dropdownOptions[1];
         --
         local playerList_inline = utility:Create("Frame", {Vector2.new(5,5), window.tab_frame}, {
             Size = utility:Size(1, -10, 0, ((10 * 22) + 4) + 20 + 60 + 12, window.tab_frame),
