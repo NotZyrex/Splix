@@ -1746,11 +1746,11 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         --
         local pointer = info.pointer or ""
         local dropdownData = info.dropdown or {
-            LocalPlayer = {
+            localplayer = {
                 name = "LocalPlayer",
                 color = Color3.fromRGB(200, 55, 200)
             },
-            Options = {
+            options = {
                 ["Priority"] = Color3.fromRGB(55, 55, 200),
                 ["Friend"] = Color3.fromRGB(55, 200, 55),
                 ["Enemy"] = Color3.fromRGB(200, 55, 55)
@@ -1759,7 +1759,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         local dropdownOptions = {};
         local count = 0;
 
-        for i,v in pairs(dropdownData.Options) do
+        for i,v in pairs(dropdownData.options) do
             table.insert(dropdownOptions, i);
             count += 1;
         end
@@ -2000,8 +2000,8 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                     --
                     listitem_username.Color = selected[4] and theme.accent or theme.textcolor
                     listitem_status.Color = 
-                    (selected[3] == dropdownData.LocalPlayer.name and dropdownData.LocalPlayer.color) or
-                    dropdownData.Options[selected[3]] or theme.textcolor
+                    (selected[3] == dropdownData.localplayer.name and dropdownData.localplayer.color) or
+                    dropdownData.options[selected[3]] or theme.textcolor
                     --
                     library.colors[listitem_username] = {
                         OutlineColor = "textborder",
@@ -2465,7 +2465,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         end)
         --
         for Index, Value in pairs(plrs:GetPlayers()) do
-            playerList.players[#playerList.players + 1] = {Value, Value.Name, Value == localplayer and dropdownData.Options.LocalPlayer.name or "None", false}
+            playerList.players[#playerList.players + 1] = {Value, Value.Name, Value == localplayer and dropdownData.localplayer.name or "None", false}
         end
         --
         library.began[#library.began + 1] = function(Input)
