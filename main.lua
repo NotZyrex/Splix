@@ -1746,20 +1746,21 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         --
         local pointer = info.pointer or ""
         local dropdownData = info.dropdown or {
-            ["LocalPlayer"] = Color3.fromRGB(200, 55, 200),
-            ["Priority"] = Color3.fromRGB(55, 55, 200),
-            ["Friend"] = Color3.fromRGB(55, 200, 55),
-            ["Enemy"] = Color3.fromRGB(200, 55, 55)
+            LocalPlayer = {
+                name = "LocalPlayer",
+                color = Color3.fromRGB(200, 55, 200)
+            },
+            Options = {
+                ["Priority"] = Color3.fromRGB(55, 55, 200),
+                ["Friend"] = Color3.fromRGB(55, 200, 55),
+                ["Enemy"] = Color3.fromRGB(200, 55, 55)
+            }
         }
         local dropdownOptions = {};
         local count = 0;
 
-        for i,v in pairs(dropdownData) do
-            if count > 1 then
-                table.insert(dropdownOptions, i);
-            else
-                table.insert(dropdownOptions, "None");
-            end
+        for i,v in pairs(dropdownData.Options) do
+            table.insert(dropdownOptions, i);
             count += 1;
         end
 
@@ -1998,7 +1999,9 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                     listitem_status.Text = selected[3]
                     --
                     listitem_username.Color = selected[4] and theme.accent or theme.textcolor
-                    listitem_status.Color = dropdownData[selected[3]] or theme.textcolor
+                    listitem_status.Color = 
+                    (selected[3] == dropdownData.LocalPlayer.name and dropdownData.LocalPlayer.color) or
+                    dropdownData.Options[selected[3]] or theme.textcolor
                     --
                     library.colors[listitem_username] = {
                         OutlineColor = "textborder",
