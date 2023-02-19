@@ -1,5 +1,4 @@
 -- this is quite literally splix but with gamesneeze's playerlist slapped onto it
--- library used for insight (da hood script)
 
 --[[ Credits
     Matas#3535 @matas - Created UI
