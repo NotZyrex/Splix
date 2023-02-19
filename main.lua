@@ -1754,7 +1754,9 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         local dropdownOptions = {};
 
         for i,v in pairs(dropdownData) do
-            table.insert(dropdownOptions, i);
+            if i > 1 then
+                table.insert(dropdownOptions, i);
+            end
         end
 
         local default = info.default or dropdownOptions[1]
@@ -2524,6 +2526,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         page.sectionOffset["left"] = page.sectionOffset["left"] + playerList_inline.Size.Y + 5
         page.sectionOffset["right"] = page.sectionOffset["right"] + playerList_inline.Size.Y + 5
         page.sections[#page.sections + 1] = playerList
+        library.pointers[pointer] = playerList;
         return playerList;
     end
     --
