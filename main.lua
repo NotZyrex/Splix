@@ -1756,7 +1756,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                 ["Enemy"] = Color3.fromRGB(200, 55, 55)
             }
         }
-        local dropdownOptions = {};
+        local dropdownOptions = {"None"};
         local count = 0;
 
         for i,v in pairs(dropdownData.options) do
@@ -1764,7 +1764,6 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
             count += 1;
         end
 
-        local default = info.default or dropdownOptions[1];
         --
         local playerList_inline = utility:Create("Frame", {Vector2.new(5,5), window.tab_frame}, {
             Size = utility:Size(1, -10, 0, ((10 * 22) + 4) + 20 + 60 + 12, window.tab_frame),
@@ -2096,7 +2095,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         for Index = 1, 1 do
             local button = {
                 open = false,
-                current = default,
+                current = "None",
                 options = dropdownOptions,
                 holder = {buttons = {}, drawings = {}},
                 selection = nil
