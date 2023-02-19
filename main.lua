@@ -2465,7 +2465,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         end)
         --
         for Index, Value in pairs(plrs:GetPlayers()) do
-            playerList.players[#playerList.players + 1] = {Value, Value.Name, Value == localplayer and "Local Player" or "None", false}
+            playerList.players[#playerList.players + 1] = {Value, Value.Name, Value == localplayer and dropdownData.Options.LocalPlayer.name or "None", false}
         end
         --
         library.began[#library.began + 1] = function(Input)
