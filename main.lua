@@ -2402,7 +2402,7 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
                 library.Relations[Relation[1].UserId] = Relation[3] ~= "None" and Relation[3] or nil
             end
             --
-            playerList_title.Text = ("Player List - %s Players"):format(#playerList.items - 1)
+            playerList_title.Text = ("Player List - %s Players"):format(#plrs:GetPlayers())
             --
             local Selection = playerList:GetSelection()
             --
