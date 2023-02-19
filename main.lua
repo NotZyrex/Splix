@@ -1746,19 +1746,21 @@ local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.Place
         --
         local pointer = info.pointer or ""
         local dropdownData = info.dropdown or {
-            ["Local Player"] = Color3.fromRGB(200, 55, 200),
+            ["LocalPlayer"] = Color3.fromRGB(200, 55, 200),
             ["Priority"] = Color3.fromRGB(55, 55, 200),
             ["Friend"] = Color3.fromRGB(55, 200, 55),
             ["Enemy"] = Color3.fromRGB(200, 55, 55)
         }
         local dropdownOptions = {};
+        local count = 0;
 
         for i,v in pairs(dropdownData) do
-            if i > 1 then
+            if count > 1 then
                 table.insert(dropdownOptions, i);
             else
                 table.insert(dropdownOptions, "None");
             end
+            count += 1;
         end
 
         local default = info.default or dropdownOptions[1];
